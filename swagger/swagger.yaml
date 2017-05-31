@@ -1,0 +1,685 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  AccountPayload:
+    example:
+      email: Bond
+      first_name: James
+      last_name: Bond
+      password: abcd1234
+    properties:
+      email:
+        example: Bond
+        format: email
+        maxLength: 400
+        minLength: 6
+        type: string
+      first_name:
+        example: James
+        maxLength: 200
+        minLength: 2
+        type: string
+      last_name:
+        example: Bond
+        maxLength: 200
+        minLength: 2
+        type: string
+      password:
+        example: abcd1234
+        maxLength: 100
+        minLength: 5
+        type: string
+    required:
+    - first_name
+    - last_name
+    - email
+    - password
+    title: AccountPayload
+    type: object
+  FtAccount:
+    description: A user account (default view)
+    example:
+      email: james@bond.com
+      first_name: James
+      id: 1
+      last_name: Bond
+    properties:
+      email:
+        description: Email of the user
+        example: james@bond.com
+        type: string
+      first_name:
+        description: First name of the user
+        example: James
+        type: string
+      id:
+        description: ID of the user
+        example: 1
+        format: int64
+        type: integer
+      last_name:
+        description: Last name of the user
+        example: Bond
+        type: string
+    required:
+    - id
+    - first_name
+    - last_name
+    - email
+    title: 'Mediatype identifier: application/ft.account+json; view=default'
+    type: object
+  FtAccountCollection:
+    description: FtAccountCollection is the media type for an array of FtAccount (default
+      view)
+    example:
+    - email: james@bond.com
+      first_name: James
+      id: 1
+      last_name: Bond
+    - email: james@bond.com
+      first_name: James
+      id: 1
+      last_name: Bond
+    items:
+      $ref: '#/definitions/FtAccount'
+    title: 'Mediatype identifier: application/ft.account+json; type=collection; view=default'
+    type: array
+  FtMatch:
+    description: A FIFA Match (default view)
+    example:
+      away_goals: 2
+      away_team: Barceloca
+      away_user: 2
+      home_goals: 1
+      home_team: Real Madrid
+      home_user: 1
+    properties:
+      away_goals:
+        description: The away goals
+        example: 2
+        format: int64
+        type: integer
+      away_team:
+        description: The away team
+        example: Barceloca
+        type: string
+      away_user:
+        description: The away user
+        example: 2
+        format: int64
+        type: integer
+      home_goals:
+        description: The home goals
+        example: 1
+        format: int64
+        type: integer
+      home_team:
+        description: The home team
+        example: Real Madrid
+        type: string
+      home_user:
+        description: The home user
+        example: 1
+        format: int64
+        type: integer
+    required:
+    - home_team
+    - away_team
+    - home_user
+    - away_user
+    - home_goals
+    - away_goals
+    title: 'Mediatype identifier: application/ft.match+json; view=default'
+    type: object
+  FtMatchCollection:
+    description: FtMatchCollection is the media type for an array of FtMatch (default
+      view)
+    example:
+    - away_goals: 2
+      away_team: Barceloca
+      away_user: 2
+      home_goals: 1
+      home_team: Real Madrid
+      home_user: 1
+    items:
+      $ref: '#/definitions/FtMatch'
+    title: 'Mediatype identifier: application/ft.match+json; type=collection; view=default'
+    type: array
+  FtToken:
+    description: A JWT for a user (default view)
+    example:
+      token: Molestiae incidunt deserunt quo sint sint.
+    properties:
+      token:
+        description: A JWT token
+        example: Molestiae incidunt deserunt quo sint sint.
+        type: string
+    required:
+    - token
+    title: 'Mediatype identifier: application/ft.token+json; view=default'
+    type: object
+  LoginPayload:
+    example:
+      email: jamesbond@gmail.com
+      password: abcd1234
+    properties:
+      email:
+        example: jamesbond@gmail.com
+        format: email
+        maxLength: 400
+        minLength: 6
+        type: string
+      password:
+        example: abcd1234
+        maxLength: 100
+        minLength: 5
+        type: string
+    required:
+    - email
+    - password
+    title: LoginPayload
+    type: object
+  MatchPayload:
+    example:
+      away_goals: 1
+      away_team: ov9pyvuup0
+      away_user: 1
+      home_goals: 2
+      home_team: 72rpw2zdta
+      home_user: 1
+    properties:
+      away_goals:
+        example: 1
+        minimum: 0
+        type: integer
+      away_team:
+        example: ov9pyvuup0
+        maxLength: 200
+        type: string
+      away_user:
+        example: 1
+        minimum: 1
+        type: integer
+      home_goals:
+        example: 2
+        minimum: 0
+        type: integer
+      home_team:
+        example: 72rpw2zdta
+        maxLength: 200
+        type: string
+      home_user:
+        example: 1
+        minimum: 1
+        type: integer
+    required:
+    - home_team
+    - away_team
+    - home_goals
+    - away_goals
+    - home_user
+    - away_user
+    title: MatchPayload
+    type: object
+  UpdateAccountPayload:
+    example:
+      email: Bond
+      first_name: James
+      last_name: Bond
+    properties:
+      email:
+        example: Bond
+        format: email
+        maxLength: 400
+        minLength: 6
+        type: string
+      first_name:
+        example: James
+        maxLength: 200
+        minLength: 2
+        type: string
+      last_name:
+        example: Bond
+        maxLength: 200
+        minLength: 2
+        type: string
+    title: UpdateAccountPayload
+    type: object
+  UpdateMatchPayload:
+    example:
+      away_goals: 2
+      away_team: qpparsg8pz
+      home_goals: 1
+      home_team: xo2vl2v05t
+    properties:
+      away_goals:
+        example: 2
+        minimum: 0
+        type: integer
+      away_team:
+        example: qpparsg8pz
+        maxLength: 200
+        type: string
+      home_goals:
+        example: 1
+        minimum: 0
+        type: integer
+      home_team:
+        example: xo2vl2v05t
+        maxLength: 200
+        type: string
+    title: UpdateMatchPayload
+    type: object
+  error:
+    description: Error response media type (default view)
+    example:
+      code: invalid_value
+      detail: Value of ID must be an integer
+      id: 3F1FKVRR
+      meta:
+        timestamp: 1.458609e+09
+      status: "400"
+    properties:
+      code:
+        description: an application-specific error code, expressed as a string value.
+        example: invalid_value
+        type: string
+      detail:
+        description: a human-readable explanation specific to this occurrence of the
+          problem.
+        example: Value of ID must be an integer
+        type: string
+      id:
+        description: a unique identifier for this particular occurrence of the problem.
+        example: 3F1FKVRR
+        type: string
+      meta:
+        additionalProperties: true
+        description: a meta object containing non-standard meta-information about
+          the error.
+        example:
+          timestamp: 1.458609e+09
+        type: object
+      status:
+        description: the HTTP status code applicable to this problem, expressed as
+          a string value.
+        example: "400"
+        type: string
+    title: 'Mediatype identifier: application/vnd.goa.error; view=default'
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: ryanm@freshworks.io
+    name: Ryan McCue
+  description: An API to keep track of FIFA games played
+  title: The Freshworks FIFA Tracker
+  version: ""
+paths:
+  /account:
+    get:
+      description: Retrieve all users
+      operationId: account#list
+      produces:
+      - application/ft.account+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtAccountCollection'
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: list account
+      tags:
+      - account
+  /account/{accountID}:
+    delete:
+      operationId: account#delete
+      parameters:
+      - description: Account ID
+        in: path
+        name: accountID
+        required: true
+        type: integer
+      produces:
+      - application/vnd.goa.error
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: delete account
+      tags:
+      - account
+    get:
+      description: Retrieve a user with a given id
+      operationId: account#show
+      parameters:
+      - description: Account ID
+        in: path
+        minimum: 1
+        name: accountID
+        required: true
+        type: integer
+      produces:
+      - application/ft.account+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtAccount'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: show account
+      tags:
+      - account
+    put:
+      description: Change user data
+      operationId: account#update
+      parameters:
+      - description: Account ID
+        in: path
+        name: accountID
+        required: true
+        type: integer
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateAccountPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/ft.account+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtAccount'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: update account
+      tags:
+      - account
+  /auth/login:
+    post:
+      description: Sign a user in
+      operationId: authentication#login
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/LoginPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/ft.token+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtToken'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      summary: login authentication
+      tags:
+      - authentication
+  /auth/register:
+    post:
+      description: Create a new user
+      operationId: authentication#register
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/AccountPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/ft.token+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtToken'
+        "204":
+          description: No Content
+          headers:
+            Authorization:
+              description: Generated JWT
+              type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      summary: register authentication
+      tags:
+      - authentication
+  /match:
+    get:
+      description: Retrieve all matches
+      operationId: match#list
+      produces:
+      - application/ft.match+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtMatchCollection'
+        "401":
+          description: Unauthorized
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: list match
+      tags:
+      - match
+  /match/{matchID}:
+    delete:
+      description: Delete a match
+      operationId: match#delete
+      parameters:
+      - description: Match ID
+        in: path
+        name: matchID
+        required: true
+        type: integer
+      produces:
+      - application/ft.match+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtMatch'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: delete match
+      tags:
+      - match
+    get:
+      description: Retrieve a match with a given id
+      operationId: match#show
+      parameters:
+      - description: Match ID
+        in: path
+        minimum: 1
+        name: matchID
+        required: true
+        type: integer
+      produces:
+      - application/ft.match+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtMatch'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: show match
+      tags:
+      - match
+    put:
+      description: Change match data
+      operationId: match#update
+      parameters:
+      - description: Match ID
+        in: path
+        name: matchID
+        required: true
+        type: integer
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateMatchPayload'
+      produces:
+      - application/ft.match+json
+      - application/vnd.goa.error
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/FtMatch'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: update match
+      tags:
+      - match
+  /match/create:
+    post:
+      description: Create new match
+      operationId: match#create
+      parameters:
+      - description: Match ID
+        in: query
+        name: matchID
+        required: false
+        type: integer
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MatchPayload'
+      produces:
+      - application/vnd.goa.error
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      schemes:
+      - http
+      security:
+      - jwt: []
+      summary: create match
+      tags:
+      - match
+produces:
+- application/json
+responses:
+  InternalServerError:
+    description: Internal Server Error
+  NoContent:
+    description: No Content
+  NotFound:
+    description: Not Found
+  OK:
+    description: OK
+    schema:
+      $ref: '#/definitions/FtAccount'
+  Unauthorized:
+    description: Unauthorized
+schemes:
+- http
+securityDefinitions:
+  SigninBasicAuth:
+    type: basic
+  jwt:
+    description: Use JWT to authenticate
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
